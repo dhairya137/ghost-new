@@ -47,3 +47,4 @@ sudo certbot --nginx -d domainname.com
 sudo nginx -s reload
 ```
 
+### And done you can go to your domain name and ghost site will be running
