@@ -12,9 +12,9 @@ These are some reassons why use this Docker Compose in your production environme
 
 ## Stack
 
-- Ubuntu 20.04 LTS or Centos 8
+- Ubuntu 20.04 LTS
 - Ghost CMS lastest docker image(alpine)
-- mysqlDB latest docker image
+- MySQL DB 5.7 docker image
 - Nginx latest docker image(alpine)
 - Letsencrypt latest docker image
 - Docker
