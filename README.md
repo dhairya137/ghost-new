@@ -1,50 +1,59 @@
-### Manual Deployment with docker
+# Ghost CMS + Docker Compose
 
-1. Install docker in vm.
-2. Connect IP of vm to domain name.
-3. Create docker-compose.yml in vm.
-4. Paste our docker-compose.yml file content in that and change url to your domain name.
-5. Run this command 
-```console
-   docker-compose up -d
-   ```
-6. Configure NGINX now
-7. Create file
-```console 
-  sudo nano /etc/nginx/sites-available/domainname.com
-  ```
-8. Add this content in the file
-```console 
-  server {
-    server_name domainname;
-    index index.html index.htm;
-    access_log /var/log/nginx/blog.log;
-    error_log  /var/log/nginx/blog-error.log error;
+These are some reassons why use this Docker Compose in your production environment.
 
-    location / {
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header Host $http_host;
-        proxy_pass http://127.0.0.1:8080;
-        proxy_redirect off;
-    }
-}
-  ```
-9. Enable this configuration
-```console
-sudo ln -s /etc/nginx/sites-available/domainname.com /etc/nginx/sites-enabled/domainname.com
-```
-10. Check nginx configuration and reload nginx
-```console
-sudo nginx -t
-sudo nginx -s reload 
-```
-11. Setup SSL on domain name
-```console
-sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d domainname.com
-sudo nginx -s reload
+☝️ 1 command to install
+
+👨‍💻 Ready to production
+
+⚡ Performance Optimized
+
+🔒 SSL auto-renewed
+
+## Stack
+
+- Ubuntu 20.04 LTS or Centos 8
+- Ghost CMS lastest docker image(alpine)
+- mysqlDB latest docker image
+- Nginx latest docker image(alpine)
+- Letsencrypt latest docker image
+- Docker
+- Docker-compose
+
+## How start using this source?
+
+Make sure that your `domain` and `domain` are pointing to your server IP.
+
+| Type | Name       | Content         |
+| ---- | ---------- | --------------- |
+| A    | domain.com | 123.123.123.123 |
+
+Then copy this command below and **change the mydomain.com to your domain** and **change the email@email.com to your email address** and run it inside your new server.
+
+### For Ubuntu 20.04 LTS users
+
+```bash
+sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git cron -y && sudo apt autoremove -y
 ```
 
-### And done you can go to your domain name and ghost site will be running
+Use pre-installed docker machine
+
+```bash
+curl -s https://raw.githubusercontent.com/dhairya137/ghost-auto/master/dc | bash -s setup mydomain.com email@email.com
+```
+
+Use without installed docker machine
+
+```bash
+curl -s https://raw.githubusercontent.com/dhairya137/ghost-auto/master/dcsimple | bash -s setup mydomain.com email@email.com
+```
+
+## Commands
+
+| Commands      | Description                              |
+| ------------- | ---------------------------------------- |
+| `./dc start`  | Start your containers                    |
+| `./dc stop`   | Stop all containers                      |
+| `./dc update` | Get Ghost updates and restart containers |
+
+Thank you all [contributor](https://github.com/clean-docker/ghost-cms/graphs/contributors)!
