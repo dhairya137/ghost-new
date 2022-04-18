@@ -55,5 +55,3 @@ curl -s https://raw.githubusercontent.com/Alt-Ghost/altghost-devops/master/dcsim
 | `./dc start`  | Start your containers                    |
 | `./dc stop`   | Stop all containers                      |
 | `./dc update` | Get Ghost updates and restart containers |
-
-Thank you all [contributor](https://github.com/clean-docker/ghost-cms/graphs/contributors)!
