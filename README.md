@@ -39,13 +39,13 @@ sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git cron -y &
 Use pre-installed docker machine
 
 ```bash
-curl -s https://raw.githubusercontent.com/dhairya137/ghost-auto/master/dc | bash -s setup mydomain.com email@email.com
+curl -s https://raw.githubusercontent.com/Alt-Ghost/altghost-devops/master/dc | bash -s setup mydomain.com email@email.com
 ```
 
 Use without installed docker machine
 
 ```bash
-curl -s https://raw.githubusercontent.com/dhairya137/ghost-auto/master/dcsimple | bash -s setup mydomain.com email@email.com
+curl -s https://raw.githubusercontent.com/Alt-Ghost/altghost-devops/master/dcsimple | bash -s setup mydomain.com email@email.com
 ```
 
 ## Commands
