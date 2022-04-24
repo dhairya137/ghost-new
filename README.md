@@ -1,57 +1,14 @@
-# Ghost CMS + Docker Compose
+# ghost-on-docker
+Example code for my article on how to run Ghostjs with Docker (Dev and Prod)
 
-These are some reassons why use this Docker Compose in your production environment.
+- Link to article: https://rameau.me/running-ghost-in-development-with-docker/
 
-☝️ 1 command to install
+Branches:
+- [`main`][1]: The initial code, from the first article
+- [`deploy`][2]: The example I created in the second article (will add link once it's published)
+## Quick Note
 
-👨‍💻 Ready to production
+I do not keep this repo up to date, so make sure to update the version of Docker, Caddy, Ghostjs, and MySQL to more up to date and supported versions at the time of reading.
 
-⚡ Performance Optimized
-
-🔒 SSL auto-renewed
-
-## Stack
-
-- Ubuntu 20.04 LTS
-- Ghost CMS lastest docker image(alpine)
-- MySQL DB 5.7 docker image
-- Nginx latest docker image(alpine)
-- Letsencrypt latest docker image
-- Docker
-- Docker-compose
-
-## How start using this source?
-
-Make sure that your `domain` and `domain` are pointing to your server IP.
-
-| Type | Name       | Content         |
-| ---- | ---------- | --------------- |
-| A    | domain.com | 123.123.123.123 |
-
-Then copy this command below and **change the mydomain.com to your domain** and **change the email@email.com to your email address** and run it inside your new server.
-
-### For Ubuntu 20.04 LTS users
-
-```bash
-sudo apt update -y && sudo apt upgrade -y && sudo apt install curl git cron -y && sudo apt autoremove -y
-```
-
-Use pre-installed docker machine
-
-```bash
-curl -s https://raw.githubusercontent.com/Alt-Ghost/altghost-devops/master/dc | bash -s setup mydomain.com email@email.com
-```
-
-Use without installed docker machine
-
-```bash
-curl -s https://raw.githubusercontent.com/Alt-Ghost/altghost-devops/master/dcsimple | bash -s setup mydomain.com email@email.com
-```
-
-## Commands
-
-| Commands      | Description                              |
-| ------------- | ---------------------------------------- |
-| `./dc start`  | Start your containers                    |
-| `./dc stop`   | Stop all containers                      |
-| `./dc update` | Get Ghost updates and restart containers |
+[1]: https://github.com/R4meau/ghost-on-docker
+[2]: https://github.com/R4meau/ghost-on-docker/tree/deploy
