@@ -39,8 +39,6 @@ services:
     container_name: ghost-prod-mysql
     command: mysqld --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
-    ports:
-      - 3307:3306
     environment:
       # see https://hub.docker.com/_/mysql
       MYSQL_ROOT_PASSWORD: password
