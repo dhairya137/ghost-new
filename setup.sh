@@ -18,6 +18,8 @@ if [ "$1" == "update" ]; then
 fi
 
 if [ "$1" == "setup" ]; then
+  sudo apt install figlet -y
+  figlet -f slant "Dhairya" 
   echo 'Cloning repo....' 
   rm -rf ghost; git clone https://github.com/Alt-Ghost/altghost-devops
   cd altghost-devops 
