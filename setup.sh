@@ -21,7 +21,7 @@ if [ "$1" == "setup" ]; then
   sudo apt install figlet -y
   figlet -f slant "Dhairya" 
   echo 'Cloning repo....' 
-  rm -rf ghost; git clone https://github.com/Alt-Ghost/altghost-devops
+  rm -rf ghost; git clone https://github.com/dhairya137/Alt-Ghost.git
   cd altghost-devops 
   git checkout ghost-caddy
   echo 'Adding domain ...'
@@ -38,13 +38,13 @@ if [ "$1" == "setup" ]; then
   sudo curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose 
   sudo chmod +x /usr/local/bin/docker-compose 
   echo 'Building Docker ....'
-  docker-compose -f docker-compose.prod.yml up -d --build 
+  sudo docker-compose -f docker-compose.prod.yml up -d --build 
   #  echo 'Access your ghost: https://'$2;
   # echo 'Access your ghost admin page: https://'$2'/ghost';
 fi
 
 
-if [ "$1" == vminit ]; then
+if [ "$1" == vmcreate ]; then
   echo "Creating VM..."
 
   terraform apply -auto-approve
@@ -52,11 +52,12 @@ if [ "$1" == vminit ]; then
   echo "VM Created Successfully"
 fi
 
-if [ "$1" == install ]; then
+if [ "$1" == vminstall ]; then
   echo "Installing Ghost..."
   echo "Pass domain name and email id at the time of executing script"
   cp remote.txt remoteexec.tf
   terraform apply -auto-approve
+  echo "Logging into VM..."
   # terraform apply -auto-approve -var domain_name="$2" 
   echo "Ghost installed Successfully"
   # > remoteexec.tf 

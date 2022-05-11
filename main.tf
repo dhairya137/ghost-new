@@ -18,7 +18,6 @@ variable "avail_zone" {}
 variable "env_prefix" {}
 variable "my_ip" {}
 variable "instance_type" {}
-variable "vm_name" {}
 
 resource "aws_security_group" "myapp-sg" {
   name = "myapp-sg"
@@ -56,7 +55,7 @@ resource "aws_security_group" "myapp-sg" {
   }
 
   tags = {
-    Name : "${var.env_prefix}-sg"
+    Name : "${var.env_prefix}-${timestamp()}-sg"
   }
 }
 
@@ -87,7 +86,8 @@ resource "aws_instance" "myapp-server" {
   key_name                    = "tf-key-pair"
 
   tags = {
-    Name : "${var.vm_name}-${var.env_prefix}-server"
+    # Name : "${var.env_prefix}-server"
+    Name : "${var.env_prefix}-${timestamp()}-server"
   }
 }
 
