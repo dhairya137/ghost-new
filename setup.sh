@@ -21,8 +21,8 @@ if [ "$1" == "setup" ]; then
   sudo apt install figlet -y
   figlet -f slant "Dhairya" 
   echo 'Cloning repo....' 
-  rm -rf ghost; git clone https://github.com/dhairya137/Alt-Ghost.git
-  cd altghost-devops 
+  rm -rf ghost; git clone https://github.com/Alt-Ghost/altghost-devops.git
+  cd altghost-devops  
   git checkout ghost-caddy
   echo 'Adding domain ...'
   sed -i "s/<domain>/$2/g" Caddyfile 
@@ -38,7 +38,7 @@ if [ "$1" == "setup" ]; then
   sudo curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose 
   sudo chmod +x /usr/local/bin/docker-compose 
   echo 'Building Docker ....'
-  sudo docker-compose -f docker-compose.prod.yml up -d --build 
+  sudo docker-compose up -d --build 
   #  echo 'Access your ghost: https://'$2;
   # echo 'Access your ghost admin page: https://'$2'/ghost';
 fi
