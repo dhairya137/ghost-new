@@ -33,6 +33,7 @@ services:
       url: https://<domain>
     volumes:
       - ghost_content:/var/lib/ghost/content
+      - ./config.production.json:/var/lib/ghost/config.production.json
 
   db:
     image: mysql:8
