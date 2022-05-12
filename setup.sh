@@ -9,8 +9,7 @@ if [ "$1" == "stop" ]; then
 fi
 
 if [ "$1" == "delete" ]; then
-    sudo docker-compose -f docker-compose.yml stop
-    docker rm -f ghost-prod ghost-prod-caddy ghost-prod-db
+    sudo docker-compose down
 fi
 
 if [ "$1" == "update" ]; then    
