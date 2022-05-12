@@ -9,7 +9,7 @@ if [ "$1" == "stop" ]; then
 fi
 
 if [ "$1" == "delete" ]; then
-    sudo docker-compose -f docker-compose.prod.yml stop
+    sudo docker-compose -f docker-compose.yml stop
     docker rm -f ghost-prod ghost-prod-caddy ghost-prod-db
 fi
 
@@ -26,7 +26,7 @@ if [ "$1" == "setup" ]; then
   git checkout ghost-caddy
   echo 'Adding domain ...'
   sed -i "s/<domain>/$2/g" Caddyfile 
-  sed -i "s/<domain>/$2/g" docker-compose.prod.yml 
+  sed -i "s/<domain>/$2/g" docker-compose.yml 
   echo 'Installing Docker...' 
   sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y 
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
