@@ -61,3 +61,16 @@ if [ "$1" == vminstall ]; then
   echo "Ghost installed Successfully"
   # > remoteexec.tf 
 fi
+
+# This is done manually so copy the code inside if block
+if [ "$1" == domainupdate ]; then
+  # SSH into machine and cd into our directory
+  echo "Updating domain...."
+  read -p "Enter old domain name: " olddomain_name
+  read -p "Enter new domain name: " newdomain_name
+  sudo docker-compose restart caddy ghost
+  # change domainname in Caddyfile
+  sed -i "s/$olddomain_name/$newdomain_name/g" Caddyfile
+  sed -i "s/$olddomain_name/$newdomain_name/g" docker-compose.yml
+  sudo docker-compose up -d
+fi
