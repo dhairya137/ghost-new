@@ -9,6 +9,8 @@ These are some reassons why use this Docker Compose in your production environme
 
 ### SSL auto-renewed
 
+### Note -> On Cloudflare, go to Site -> SSL and set it to Full or Full(strict)
+
 <hr>
 
 ### Used Stack
