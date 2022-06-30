@@ -20,11 +20,9 @@ if [ "$1" == "setup" ]; then
   sudo apt install figlet -y
   figlet -f slant "Dhairya" 
   echo 'Cloning repo....' 
-  # rm -rf ghost; git clone https://github.com/Alt-Ghost/altghost-devops.git
-  # cd altghost-devops  
-  # git checkout ghost-caddy
-  rm -rf ghost; git clone https://github.com/dhairya137/ghost-from-alt.git
-  cd ghost-from-alt
+  rm -rf ghost; git clone https://github.com/Alt-Ghost/altghost-devops.git
+  cd altghost-devops  
+  git checkout ghost-caddy
   git checkout ghost-caddy
   echo 'Adding domain ...'
   sed -i "s/<domain>/$2/g" Caddyfile 
