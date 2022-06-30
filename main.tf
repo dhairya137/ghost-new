@@ -90,7 +90,7 @@ resource "aws_eip" "example" {
 resource "cloudflare_record" "www" {
   zone_id = data.cloudflare_zone.dptools.id
   name    = "test2"
-  value   = aws_eip.example
+  value   = aws_eip.example.public_ip
   type    = "A"
   proxied = true
 }
@@ -107,7 +107,6 @@ resource "aws_instance" "myapp-server" {
   key_name                    = "tf-key-pair"
 
   tags = {
-    # Name : "${var.env_prefix}-server"
     Name : "${var.env_prefix}-server"
   }
 }
