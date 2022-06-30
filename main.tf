@@ -16,6 +16,15 @@ provider "aws" {
   shared_credentials_file = "/home/dhairya/.aws/credentials"
 }
 
+provider "cloudflare" {
+  email   = "dhairya00798@gmail.com"
+  api_key = "a8e9e423a3b90864720a4c148b04ff30c9312"
+}
+
+data "cloudflare_zone" "dptools" {
+  name = "dptools.me"
+}
+
 variable "vpc_cidr_block" {}
 variable "subnet_cidr_block" {}
 variable "avail_zone" {}
@@ -59,7 +68,7 @@ resource "aws_security_group" "myapp-sg" {
   }
 
   tags = {
-    Name : "${var.env_prefix}-${timestamp()}-sg"
+    Name : "${var.env_prefix}-sg"
   }
 }
 
@@ -78,6 +87,14 @@ resource "aws_eip" "example" {
   vpc      = true
 }
 
+resource "cloudflare_record" "www" {
+  zone_id = data.cloudflare_zone.dptools.id
+  name    = "test2"
+  value   = aws_eip.example
+  type    = "A"
+  proxied = true
+}
+
 resource "aws_instance" "myapp-server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
@@ -91,7 +108,7 @@ resource "aws_instance" "myapp-server" {
 
   tags = {
     # Name : "${var.env_prefix}-server"
-    Name : "${var.env_prefix}-${timestamp()}-server"
+    Name : "${var.env_prefix}-server"
   }
 }
 
@@ -102,4 +119,12 @@ output "ec2_public_ip" {
 
 output "eip" {
   value = aws_eip.example.public_ip
+}
+
+
+output "domain_name" {
+  value = cloudflare_record.www.name
+}
+output "domain_ip" {
+  value = cloudflare_record.www.value
 }
