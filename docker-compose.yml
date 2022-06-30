@@ -11,7 +11,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - /home/ubuntu/altghost-devops/Caddyfile:/etc/caddy/Caddyfile
+      - ./Caddyfile:/etc/caddy/Caddyfile
       - ghost_caddy_data:/data
       - ghost_caddy_config:/config
 

@@ -31,6 +31,7 @@ variable "avail_zone" {}
 variable "env_prefix" {}
 variable "my_ip" {}
 variable "instance_type" {}
+variable "subdomain_value" {}
 
 resource "aws_security_group" "myapp-sg" {
   name = "myapp-sg"
@@ -68,7 +69,7 @@ resource "aws_security_group" "myapp-sg" {
   }
 
   tags = {
-    Name : "${var.env_prefix}-sg"
+    Name : "${var.subdomain_value}-sg"
   }
 }
 
@@ -89,7 +90,7 @@ resource "aws_eip" "example" {
 
 resource "cloudflare_record" "www" {
   zone_id = data.cloudflare_zone.dptools.id
-  name    = "test2"
+  name    = var.subdomain_value # This will be replaced with
   value   = aws_eip.example.public_ip
   type    = "A"
   proxied = true
@@ -107,7 +108,7 @@ resource "aws_instance" "myapp-server" {
   key_name                    = "tf-key-pair"
 
   tags = {
-    Name : "${var.env_prefix}-server"
+    Name : "${var.subdomain_value}-server"
   }
 }
 
@@ -119,7 +120,6 @@ output "ec2_public_ip" {
 output "eip" {
   value = aws_eip.example.public_ip
 }
-
 
 output "domain_name" {
   value = cloudflare_record.www.name
